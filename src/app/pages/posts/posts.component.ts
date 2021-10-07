@@ -8,15 +8,26 @@ import { DataService } from '../../services/data.service';
 })
 export class PostsComponent implements OnInit {
 
+  mensajes: any; 
+
   constructor(private dataService: DataService) { }
 
   //se carga al momento de iniciar la aplicación
-  ngOnInit(): void {
-    //traer los datos desde data.services y el metodo getPosts.
-    //Se debe poner suscribe para traer los datos.
-    this.dataService.getPosts().subscribe(posts => {
-      console.log(posts)
-    });
-  }
+  ngOnInit() {
 
+    //traer los datos desde data.services y el metodo getPosts. Se llama a la variable mensajes y se le asigna el valor
+    this.mensajes = this.dataService.getPosts();
+      
+    
+      // Se debe poner suscribe para traer los datos.
+      // .subscribe( (posts: any) => {
+      //   console.log(posts);
+      //   this.mensajes = posts;
+      // });
+  }
+  
+  escuchaClick(id: number){
+    console.log('Click en:', id);
+  }
+  
 }
